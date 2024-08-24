@@ -34,15 +34,17 @@ def uglify(input_files, output, overwrite):
         if overwrite:
             output_file = input_file
         elif output:
+            # If --output is provided and overwrite is not used, use it for all files
             output_file = output
         else:
+            # Default output naming
             output_file = input_file.replace('.c', '_uglified.c')
-        
-        # Ensure that if overwriting, we don't accidentally overwrite multiple files to the same name
-        if overwrite and len(input_files) > 1:
-            click.echo("Error: '--overwrite' cannot be used with multiple input files without specifying an output file.")
-            return
-        
+
+        if not overwrite and len(input_files) > 1:
+            # If multiple files are processed and no --overwrite, the output must be handled uniquely
+            base_name = os.path.splitext(input_file)[0]
+            output_file = base_name + '_uglified.c'
+
         max_width = get_max_width(input_file)
 
         uglified_code = ""
