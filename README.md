@@ -22,6 +22,12 @@ uglifyc [input]
 
 This last one will output to [file]_uglified.c
 
+And the input can also be overwritten (not reccommended)
+
+```bash
+uglifyc [input] --overwrite
+```
+
 ## Examples
 
 ### Input
