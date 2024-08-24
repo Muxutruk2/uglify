@@ -1,24 +1,30 @@
-# Uglify
+# Uglifyc
 
 This python script uglifies a C file by moving the charachters in char_list to the right (10 spaces to the right of the longest line)
 
 ## Installation
 
-Clone the repo and cd into it
+Install it via pip
 
 ```bash
-git clone https://github.com/Muxutruk2/uglify && cd uglify
+pip install uglifyc
 ```
 
-Move the C file to the folder and run or make [input] and [output] absolute paths
+It can be run 2 ways:
 
 ```bash
-python main.py -i [input] -o [output]
+uglifyc [input] -o [output]
 ```
+
+```bash
+uglifyc [input]
+```
+
+This last one will output to [file]_uglified.c
 
 ## Examples
 
-input.c
+### Input
 
 ```c
 #include <stdio.h>
@@ -48,7 +54,7 @@ int main() {
 }
 ```
 
-output.c
+### Output
 
 ```c
 #include <stdio.h>                                 
