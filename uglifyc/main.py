@@ -18,23 +18,29 @@ def get_first_normal_char_from_right(s, char_list, space_number):
 @click.command()
 @click.argument('input_file', type=click.Path(exists=True))
 @click.option('-o', '--output', type=click.Path(), help='Output file for the uglified Python code.')
-def uglify(input_file, output):
+def uglify(input, output):
     """
-    Uglifies a Python file by removing unnecessary whitespace and outputs the result to a file.
+    Uglifies a C file.
     """
     # Set the output file name
     if output is None:
-        output = input_file.replace('.py', '_uglified.py')
-    
-    with open(input_file, 'r') as infile:
-        code = infile.read()
-    
-    # Simple "uglify" by removing unnecessary whitespace
-    uglified_code = ''.join([line.strip() for line in code.splitlines()])
-    
+        output = input.replace('.c', '_uglified.c')
+
+    char_list = ["}", ";", ")", "\n", " ", "{"]
+
+    max_width = get_max_width(input)
+
+    uglified_code = ""
+
+    with open(input, "r") as f:
+        for line in f.readlines():
+            space_number = max_width - len(line)
+
+            uglified_code += get_first_normal_char_from_right(line, char_list, space_number+10)
+
     with open(output, 'w') as outfile:
         outfile.write(uglified_code)
-    
+
     click.echo(f"Uglified code written to {output}")
 
 if __name__ == '__main__':
