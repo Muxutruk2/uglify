@@ -1,0 +1,4 @@
+# Ignore distribution directories
+/dist/
+/build/
+/*.egg-info/
