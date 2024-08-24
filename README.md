@@ -17,7 +17,7 @@ uglifyc [input] -o [output]
 ```
 
 ```bash
-uglifyc [input]
+uglifyc [input(s)]
 ```
 
 This last one will output to [file]_uglified.c
@@ -25,8 +25,10 @@ This last one will output to [file]_uglified.c
 And the input can also be overwritten (not reccommended)
 
 ```bash
-uglifyc [input] --overwrite
+uglifyc [input(s)] --overwrite
 ```
+
+[input(s)] means many files can be changed
 
 ## Examples
 
